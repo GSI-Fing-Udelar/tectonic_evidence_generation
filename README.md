@@ -70,3 +70,5 @@ Each role has its own README with detailed usage instructions and variables.
   roles:
     - role: tectonic.evidence_generation.install_dependencies
 ```
+
+You must ensure that you invoke this role in your base_config.yml file in order to use the modules provided by this collection.
