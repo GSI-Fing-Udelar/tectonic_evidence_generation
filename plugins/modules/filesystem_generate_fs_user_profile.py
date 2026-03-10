@@ -295,7 +295,7 @@ def main():
         
         else:
             # Generate single profile
-            result = profile_generator.generate_profile(
+            result = generator.generate_profile(
                 profile_type=profile_type,
                 base_directory=base_directory,
                 file_count=file_count,
