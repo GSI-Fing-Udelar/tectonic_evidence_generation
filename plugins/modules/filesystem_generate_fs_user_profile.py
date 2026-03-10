@@ -7,7 +7,7 @@ from ansible.module_utils.basic import AnsibleModule
 
 DOCUMENTATION = r'''
 ---
-module: generate_fs_user_profile
+module: filesystem_generate_fs_user_profile
 
 short_description: Generate realistic user filesystem profiles (Layer 3)
 
@@ -89,7 +89,7 @@ notes:
 EXAMPLES = r'''
 # Generate a personal user profile
 - name: Create personal user filesystem
-  generate_fs_user_profile:
+  filesystem_generate_fs_user_profile:
     profile_type: personal
     base_directory: /tmp/users/john
     file_count: 300
@@ -98,7 +98,7 @@ EXAMPLES = r'''
 
 # Generate a corporate user profile
 - name: Create office worker profile
-  generate_fs_user_profile:
+  filesystem_generate_fs_user_profile:
     profile_type: corporate
     base_directory: /tmp/users/employee1
     apply_temporal: true
@@ -106,7 +106,7 @@ EXAMPLES = r'''
 
 # Generate a developer profile with many files
 - name: Create developer environment
-  generate_fs_user_profile:
+  filesystem_generate_fs_user_profile:
     profile_type: developer
     base_directory: /tmp/users/dev_team
     file_count: 500
@@ -114,7 +114,7 @@ EXAMPLES = r'''
 
 # Generate multiple users in an office environment
 - name: Create multi-user office
-  generate_fs_user_profile:
+  filesystem_generate_fs_user_profile:
     profile_type: corporate
     base_directory: /tmp/office
     multi_user: true
@@ -131,7 +131,7 @@ EXAMPLES = r'''
 
 # Generate student profile with default settings
 - name: Create student filesystem
-  generate_fs_user_profile:
+  filesystem_generate_fs_user_profile:
     profile_type: student
     base_directory: /tmp/students/alice
 '''
@@ -200,7 +200,7 @@ multi_user_stats:
 
 def main():
     """
-    Main execution function for generate_fs_user_profile module.
+    Main execution function for filesystem_generate_fs_user_profile module.
     
     This module acts as an Ansible interface to the Layer 3 orchestrator
     Layer3UserProfile from module_utils.layer3_commonprofile.

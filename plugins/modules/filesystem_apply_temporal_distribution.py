@@ -7,7 +7,7 @@ from ansible.module_utils.basic import AnsibleModule
 
 DOCUMENTATION = r'''
 ---
-module: apply_temporal_distribution
+module: filesystem_apply_temporal_distribution
 
 short_description: Apply temporal distributions to file timestamps (Layer 2)
 
@@ -52,7 +52,7 @@ options:
 
 notes:
   - Uses Layer 1 primitive apply_file_timestamps() from module_utils.layer1_primitives
-  - Uses Layer 2 orchestrator apply_temporal_distribution() from module_utils.layer2_orchestrators
+  - Uses Layer 2 orchestrator filesystem_apply_temporal_distribution() from module_utils.layer2_orchestrators
   - "UNIFORM: requires 'offset_min' and 'offset_max' (e.g., '-30d', '0')"
   - "GAUSSIAN: requires 'mean' and 'stddev' (e.g., '-7d', '2d')"
   - "EXPONENTIAL: requires 'lambda_param' or 'mean' (e.g., '7d')"
@@ -65,7 +65,7 @@ notes:
 EXAMPLES = r'''
 # Apply uniform distribution (files created over last 30 days)
 - name: Distribute files over last month
-  apply_temporal_distribution:
+  filesystem_apply_temporal_distribution:
     files:
       - /tmp/file1.docx
       - /tmp/file2.pdf
@@ -78,7 +78,7 @@ EXAMPLES = r'''
 
 # Apply Gaussian distribution (concentration around 7 days ago)
 - name: Simulate infection window
-  apply_temporal_distribution:
+  filesystem_apply_temporal_distribution:
     files: "{{ encrypted_files }}"
     base_timestamp: "{{ ansible_date_time.epoch }}"
     distribution_type: gaussian
@@ -88,7 +88,7 @@ EXAMPLES = r'''
 
 # Apply Pareto distribution (power law - most files recent)
 - name: Apply power law timestamps
-  apply_temporal_distribution:
+  filesystem_apply_temporal_distribution:
     files: "{{ all_documents }}"
     base_timestamp: "{{ ansible_date_time.epoch }}"
     distribution_type: pareto
@@ -98,7 +98,7 @@ EXAMPLES = r'''
 
 # Apply deterministic offset (all files same time)
 - name: Set all files to specific time
-  apply_temporal_distribution:
+  filesystem_apply_temporal_distribution:
     files: "{{ victim_files }}"
     base_timestamp: "{{ ansible_date_time.epoch }}"
     distribution_type: deterministic
@@ -134,10 +134,10 @@ total_files:
 
 def main():
     """
-    Main execution function for apply_temporal_distribution module.
+    Main execution function for filesystem_apply_temporal_distribution module.
     
     This module acts as an Ansible interface to the Layer 2 orchestrator
-    apply_temporal_distribution() from module_utils.layer2_orchestrators.
+    filesystem_apply_temporal_distribution() from module_utils.layer2_orchestrators.
     
     Workflow:
         1. Parse and validate module arguments (supports both simple and complex formats)
@@ -231,7 +231,7 @@ def main():
                 dist_params = modification_dist['params']
                 distribution_summary['modification'] = f"{dist_type} ({dist_params})"
                 
-                success, modified_count, failed, error = l2.apply_temporal_distribution(
+                success, modified_count, failed, error = l2.filesystem_apply_temporal_distribution(
                     files=files,
                     base_timestamp=base_timestamp,
                     distribution_type=dist_type,
@@ -260,7 +260,7 @@ def main():
                 distribution_summary['access'] = f"{dist_type} ({dist_params})"
                 
                 # Apply access time distribution (using same approach)
-                success, modified_count, failed, error = l2.apply_temporal_distribution(
+                success, modified_count, failed, error = l2.filesystem_apply_temporal_distribution(
                     files=files,
                     base_timestamp=base_timestamp,
                     distribution_type=dist_type,
@@ -325,7 +325,7 @@ def main():
         
         # Call Layer 2 orchestrator to apply temporal distribution
         try:
-            success, files_modified, failed_files, error = l2.apply_temporal_distribution(
+            success, files_modified, failed_files, error = l2.filesystem_apply_temporal_distribution(
                 files=files,
                 base_timestamp=base_timestamp,
                 distribution_type=dist_type,

@@ -18,7 +18,7 @@ except ImportError:
 
 DOCUMENTATION = r'''
 ---
-module: decrypt_files_aes
+module: filesystem_decrypt_files_aes
 
 short_description: Bulk AES-256-CBC file decryption (Layer 2)
 
@@ -70,7 +70,7 @@ notes:
 EXAMPLES = r'''
 # Decrypt files with known key
 - name: Decrypt victim files
-  decrypt_files_aes:
+  filesystem_decrypt_files_aes:
     files:
       - /tmp/wannacry_simulator/file1.docx.WNCRY
       - /tmp/wannacry_simulator/file2.pdf.WNCRY
@@ -79,7 +79,7 @@ EXAMPLES = r'''
 
 # Decrypt and keep encrypted files (for testing)
 - name: Decrypt with backup
-  decrypt_files_aes:
+  filesystem_decrypt_files_aes:
     files:
       - /tmp/document.docx.WNCRY
     key: "{{ encryption_key }}"
@@ -93,7 +93,7 @@ EXAMPLES = r'''
   register: files_to_decrypt
 
 - name: Decrypt found files
-  decrypt_files_aes:
+  filesystem_decrypt_files_aes:
     files: "{{ files_to_decrypt.files | map(attribute='path') | list }}"
     key: "{{ saved_encryption_key }}"
 '''
@@ -138,7 +138,7 @@ total_failed:
 
 def main():
     """
-    Main execution function for decrypt_files_aes module.
+    Main execution function for filesystem_decrypt_files_aes module.
     
     This module acts as an Ansible interface to the Layer 2 orchestrator
     decrypt_files_bulk() from module_utils.layer2_orchestrators.

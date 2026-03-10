@@ -10,7 +10,7 @@ from ansible_collections.tectonic.evidence_generation.plugins.module_utils.netwo
 from ansible_collections.tectonic.evidence_generation.plugins.module_utils.network.pcap_merger import merge_pcap_with_mergecap
 
 DOCUMENTATION = r'''
-module: generate_tcp_connection
+module: network_generate_tcp_connection
 
 short_description: Generates TCP connection primitives (Layer 1)
 
@@ -69,7 +69,7 @@ options:
 EXAMPLES = r'''
 # Generate complete TCP handshake
 - name: Generate TCP handshake
-  generate_tcp_connection:
+  network_generate_tcp_connection:
     connection_type: handshake_complete
     src_ip: "192.168.1.100"
     dest_ip: "172.16.0.50"
@@ -78,7 +78,7 @@ EXAMPLES = r'''
 
 # Generate SYN flood (incomplete handshake)
 - name: Generate SYN flood packet
-  generate_tcp_connection:
+  network_generate_tcp_connection:
     connection_type: handshake_incomplete
     src_ip: "1.2.3.4"
     dest_ip: "172.16.0.10"

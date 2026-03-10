@@ -10,7 +10,7 @@ from ansible_collections.tectonic.evidence_generation.plugins.module_utils.netwo
 
 
 DOCUMENTATION = r'''
-module: generate_network_user_profile
+module: network_generate_network_user_profile
 
 short_description: Generates user behavior profiles (Layer 3)
 
@@ -90,7 +90,7 @@ options:
 EXAMPLES = r'''
 # Single user browsing 5 websites
 - name: Generate single user browsing profile
-  generate_network_user_profile:
+  network_generate_network_user_profile:
     profile_type: single_user
     hosts_amount: 5
     src_ip: "192.168.1.100"
@@ -99,7 +99,7 @@ EXAMPLES = r'''
 
 # Multiple users (3 users, each visiting 3 websites)
 - name: Generate multiple users browsing profile
-  generate_network_user_profile:
+  network_generate_network_user_profile:
     profile_type: multiple_users
     usrs_amount: 3
     hosts_per_user: 3

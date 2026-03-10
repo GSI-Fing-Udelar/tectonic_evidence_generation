@@ -8,7 +8,7 @@ import os
 
 DOCUMENTATION = r'''
 ---
-module: generate_file
+module: filesystem_generate_file
 
 short_description: Generate a single file by type (Layer 1)
 
@@ -91,7 +91,7 @@ options:
 
 notes:
   - Uses Layer 1 primitives from module_utils.layer1_primitives
-  - For bulk file generation, use generate_files_bulk module
+  - For bulk file generation, use filesystem_generate_files_bulk module
   - Supported extensions txt, pdf, jpg, png, docx, xlsx, zip, tar, tar.gz, sh, py
   - Archives (zip, tar) contain randomly generated dummy files
 '''
@@ -99,14 +99,14 @@ notes:
 EXAMPLES = r'''
 # Generate text file with custom content
 - name: Create text file
-  generate_file:
+  filesystem_generate_file:
     path: /tmp/readme.txt
     extension: txt
     content: "This is a test file\\nMultiple lines\\nSupported"
 
 # Generate PDF with specific size
 - name: Create large PDF
-  generate_file:
+  filesystem_generate_file:
     path: /tmp/document.pdf
     extension: pdf
     size: "5MB"
@@ -114,21 +114,21 @@ EXAMPLES = r'''
 
 # Generate image file
 - name: Create JPEG image
-  generate_file:
+  filesystem_generate_file:
     path: /tmp/photo.jpg
     extension: jpg
     size: "2MB"
 
 # Generate Office document
 - name: Create Word document
-  generate_file:
+  filesystem_generate_file:
     path: /tmp/report.docx
     extension: docx
     seed: 42
 
 # Generate Excel with custom dimensions
 - name: Create spreadsheet
-  generate_file:
+  filesystem_generate_file:
     path: /tmp/data.xlsx
     extension: xlsx
     rows: 50
@@ -136,13 +136,13 @@ EXAMPLES = r'''
 
 # Generate compressed archive
 - name: Create ZIP file
-  generate_file:
+  filesystem_generate_file:
     path: /tmp/backup.zip
     extension: zip
 
 # Generate executable script
 - name: Create shell script
-  generate_file:
+  filesystem_generate_file:
     path: /tmp/script.sh
     extension: sh
 '''
@@ -181,7 +181,7 @@ size_kb:
 
 def main():
     """
-    Main execution function for generate_file module.
+    Main execution function for filesystem_generate_file module.
     
     This module acts as an Ansible interface to Layer 1 primitives
     from module_utils.layer1_primitives. It routes to the appropriate

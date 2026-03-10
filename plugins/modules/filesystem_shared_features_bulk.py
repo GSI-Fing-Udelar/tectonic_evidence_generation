@@ -7,7 +7,7 @@ from ansible.module_utils.basic import AnsibleModule
 
 DOCUMENTATION = r'''
 ---
-module: shared_features_bulk
+module: filesystem_shared_features_bulk
 
 short_description: Apply shared characteristics to files (Layer 2)
 
@@ -103,7 +103,7 @@ notes:
 EXAMPLES = r'''
 # Set all encrypted files to read-only
 - name: Make encrypted files read-only
-  shared_features_bulk:
+  filesystem_shared_features_bulk:
     base_directory: "/tmp/wannacry_simulator"
     name_pattern: "*.WNCRY"
     default_permissions: "0444"
@@ -111,21 +111,21 @@ EXAMPLES = r'''
 
 # Delete 12% of files (simulate shadow copy deletion)
 - name: Simulate backup deletion
-  shared_features_bulk:
+  filesystem_shared_features_bulk:
     base_directory: "/tmp/wannacry_simulator"
     name_pattern: "*.WNCRY"
     deleted_ratio: 0.12
 
 # Delete exact count of files
 - name: Delete specific number of files
-  shared_features_bulk:
+  filesystem_shared_features_bulk:
     base_directory: "/tmp/documents"
     name_pattern: "*.docx.WNCRY"
     deleted_count: 18
 
 # Apply permissions without deletion
 - name: Change all file permissions
-  shared_features_bulk:
+  filesystem_shared_features_bulk:
     base_directory: "/tmp/data"
     name_pattern: "*"
     default_permissions: "0755"
@@ -166,7 +166,7 @@ files_failed:
 
 def main():
     """
-    Main execution function for shared_features_bulk module.
+    Main execution function for filesystem_shared_features_bulk module.
     
     This module acts as an Ansible interface to the Layer 2 orchestrator
     apply_shared_characteristics() from module_utils.layer2_orchestrators.

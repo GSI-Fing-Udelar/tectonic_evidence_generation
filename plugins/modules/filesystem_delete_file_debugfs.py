@@ -7,7 +7,7 @@ from ansible.module_utils.basic import AnsibleModule
 
 DOCUMENTATION = r'''
 ---
-module: delete_file_debugfs
+module: filesystem_delete_file_debugfs
 
 short_description: Delete file using debugfs on ext4 filesystem
 
@@ -41,13 +41,13 @@ notes:
 EXAMPLES = r'''
 # Delete file with debugfs capturing inode
 - name: Delete password file forensically
-  delete_file_debugfs:
+  filesystem_delete_file_debugfs:
     filename: FORENSIC_passwords.txt
     device: /dev/sda3
 
 # Delete file in subdirectory
 - name: Delete document
-  delete_file_debugfs:
+  filesystem_delete_file_debugfs:
     filename: FORENSIC_document.txt
     device: /dev/sda3
     directory: /home
@@ -87,7 +87,7 @@ msg:
 
 def main():
     """
-    Main execution function for delete_file_debugfs module.
+    Main execution function for filesystem_delete_file_debugfs module.
     """
     
     # Define module argument specification

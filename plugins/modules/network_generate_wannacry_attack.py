@@ -11,7 +11,7 @@ from ansible_collections.tectonic.evidence_generation.plugins.module_utils.netwo
 
 DOCUMENTATION = r'''
 ---
-module: generate_wannacry_attack
+module: network_generate_wannacry_attack
 
 short_description: Generates WannaCry-style multi-stage attack simulation (Layer 3 Profile)
 
@@ -64,7 +64,7 @@ options:
 EXAMPLES = r'''
 # Generate WannaCry-style attack simulation
 - name: Generate WannaCry attack scenario
-  generate_wannacry_attack:
+  network_generate_wannacry_attack:
     victim_ip: "192.168.1.100"
     attacker_ip: "203.0.113.50"
     ip_malicious_server: "198.51.100.25"
@@ -72,7 +72,7 @@ EXAMPLES = r'''
 
 # Generate reproducible attack (with seed)
 - name: Generate reproducible WannaCry attack
-  generate_wannacry_attack:
+  network_generate_wannacry_attack:
     victim_ip: "192.168.1.100"
     seed: 42
     verbose: true
@@ -80,7 +80,7 @@ EXAMPLES = r'''
 
 # Generate with auto-generated attacker IPs
 - name: Generate WannaCry attack with random attacker IPs
-  generate_wannacry_attack:
+  network_generate_wannacry_attack:
     victim_ip: "10.0.0.50"
     output_path: "/tmp/wannacry_attack_auto.pcap"
 '''
@@ -132,7 +132,7 @@ attack_phases:
     returned: always
 '''
 
-def generate_wannacry_attack_packets(module):
+def network_generate_wannacry_attack_packets(module):
     """
     Main function to generate WannaCry attack simulation packets based on module parameters.
     """
@@ -286,7 +286,7 @@ def main():
         supports_check_mode=False
     )
     
-    generate_wannacry_attack_packets(module)
+    network_generate_wannacry_attack_packets(module)
 
 
 if __name__ == '__main__':

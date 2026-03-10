@@ -7,7 +7,7 @@ from ansible.module_utils.basic import AnsibleModule
 
 DOCUMENTATION = r'''
 ---
-module: delete_file_standard
+module: filesystem_delete_file_standard
 
 short_description: Delete a file with optional backup (Layer 1)
 
@@ -38,23 +38,23 @@ notes:
 EXAMPLES = r'''
 # Delete a single file (forensic recoverable by default)
 - name: Delete temporary file
-  delete_file_standard:
+  filesystem_delete_file_standard:
     path: /tmp/file_to_delete.txt
 
 # Delete with backup
 - name: Delete important file with backup
-  delete_file_standard:
+  filesystem_delete_file_standard:
     path: /tmp/important_data.xlsx
     backup: true
 
 # Production delete (unrecoverable)
 - name: Remove encrypted file permanently
-  delete_file_standard:
+  filesystem_delete_file_standard:
     path: /tmp/document.docx.WNCRY
 
 # Forensic-recoverable deletion (for testing recovery tools)
 - name: Delete file but keep recoverable
-  delete_file_standard:
+  filesystem_delete_file_standard:
     path: /tmp/test_recovery.txt
 '''
 
@@ -86,7 +86,7 @@ backup_file:
 
 def main():
     """
-    Main execution function for delete_file_standard module.
+    Main execution function for filesystem_delete_file_standard module.
     
     This module acts as an Ansible interface to the Layer 1 primitive
     delete_file() from module_utils.layer1_primitives.

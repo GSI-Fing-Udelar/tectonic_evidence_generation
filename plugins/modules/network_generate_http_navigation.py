@@ -10,7 +10,7 @@ from ansible_collections.tectonic.evidence_generation.plugins.module_utils.netwo
 
 DOCUMENTATION = r'''
 ---
-module: generate_http_navigation
+module: network_generate_http_navigation
 
 short_description: Generates complete HTTP web navigation (Layer 2)
 
@@ -72,7 +72,7 @@ options:
 EXAMPLES = r'''
 # Simple web navigation (HTML only) with deterministic seeding
 - name: Navigate to website
-  generate_http_navigation:
+  network_generate_http_navigation:
     host: "www.example.com"
     src_ip: "192.168.1.100"
     dns_srvr_ip: "8.8.8.8"
@@ -84,7 +84,7 @@ EXAMPLES = r'''
 
 # Complete web page load (HTML + CSS + JS)
 - name: Load complete web page
-  generate_http_navigation:
+  network_generate_http_navigation:
     host: "www.social-network.com"
     src_ip: "192.168.1.100"
     dns_srvr_ip: "8.8.8.8"

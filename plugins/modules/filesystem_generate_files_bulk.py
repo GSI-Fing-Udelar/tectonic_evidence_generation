@@ -8,7 +8,7 @@ from ansible.module_utils.basic import AnsibleModule
 
 DOCUMENTATION = r'''
 ---
-module: generate_files_bulk
+module: filesystem_generate_files_bulk
 
 short_description: Bulk file generation orchestrator (Layer 2)
 
@@ -85,7 +85,7 @@ notes:
 EXAMPLES = r'''
 # Generate 100 files with default distribution (flat structure)
 - name: Generate 100 files
-  generate_files_bulk:
+  filesystem_generate_files_bulk:
     count: 100
     base_directory: "/tmp/documents"
     distribution:
@@ -96,7 +96,7 @@ EXAMPLES = r'''
 
 # Generate files in tree structure with Faker names
 - name: Generate files with realistic names
-  generate_files_bulk:
+  filesystem_generate_files_bulk:
     count: 50
     base_directory: "/tmp/company_files"
     structure: tree
@@ -111,7 +111,7 @@ EXAMPLES = r'''
 
 # Generate files for ransomware simulation
 - name: Generate victim files
-  generate_files_bulk:
+  filesystem_generate_files_bulk:
     count: 150
     base_directory: "/tmp/wannacry_simulator"
     name_pattern: "document_{date}_{n}"
@@ -163,10 +163,10 @@ distribution_used:
 
 def main():
     """
-    Main execution function for generate_files_bulk module.
+    Main execution function for filesystem_generate_files_bulk module.
     
     This module acts as an Ansible interface to the Layer 2 orchestrator
-    generate_files_bulk() from module_utils.layer2_orchestrators.
+    filesystem_generate_files_bulk() from module_utils.layer2_orchestrators.
     
     Workflow:
         1. Parse and validate module arguments
@@ -225,7 +225,7 @@ def main():
     
     # Call Layer 2 orchestrator to generate files
     try:
-        success, created_files, failed_files, error = l2.generate_files_bulk(
+        success, created_files, failed_files, error = l2.filesystem_generate_files_bulk(
             count=count,
             distribution=distribution,
             base_directory=base_directory,

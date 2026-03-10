@@ -6,7 +6,7 @@ import os
 
 DOCUMENTATION = r'''
 ---
-module: generate_pe_wannacry
+module: network_generate_pe_wannacry
 
 short_description: Generate PE files with WannaCry malware signatures
 
@@ -43,7 +43,7 @@ options:
 
 EXAMPLES = r'''
 - name: Generate WannaCry PE executables
-  generate_pe_wannacry:
+  network_generate_pe_wannacry:
     target_directory: "/tmp/wannacry_exe"
     executable_names:
       - "mssecsvc.exe"

@@ -22,7 +22,7 @@ except ImportError:
 
 DOCUMENTATION = r'''
 ---
-module: execute_ransomware_profile
+module: filesystem_execute_ransomware_profile
 
 short_description: Execute complete ransomware simulation using Layer 3 profiles
 
@@ -138,13 +138,13 @@ notes:
 EXAMPLES = r'''
 # Execute WannaCry simulation with default parameters
 - name: Simulate WannaCry ransomware
-  execute_ransomware_profile:
+  filesystem_execute_ransomware_profile:
     profile: wannacry
     target_directory: /tmp/wannacry_simulation
 
 # Execute WannaCry with custom file count
 - name: WannaCry with 500 files
-  execute_ransomware_profile:
+  filesystem_execute_ransomware_profile:
     profile: wannacry
     target_directory: /tmp/wannacry_test
     file_count: 500
@@ -152,7 +152,7 @@ EXAMPLES = r'''
 
 # Custom ransomware profile based on WannaCry
 - name: Custom ransomware simulation
-  execute_ransomware_profile:
+  filesystem_execute_ransomware_profile:
     profile: custom
     target_directory: /tmp/custom_ransomware
     profile_config:
@@ -167,14 +167,14 @@ EXAMPLES = r'''
 
 # Test file generation without encryption
 - name: Generate files only (no encryption)
-  execute_ransomware_profile:
+  filesystem_execute_ransomware_profile:
     profile: wannacry
     target_directory: /tmp/test_files
     enable_encryption: false
 
 # Reproducible encryption with known key (for testing)
 - name: WannaCry with known key for testing
-  execute_ransomware_profile:
+  filesystem_execute_ransomware_profile:
     profile: wannacry
     target_directory: /tmp/wannacry_reproducible
     encryption_key: "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
@@ -182,7 +182,7 @@ EXAMPLES = r'''
 
 # Force re-run of existing simulation
 - name: Re-run WannaCry simulation
-  execute_ransomware_profile:
+  filesystem_execute_ransomware_profile:
     profile: wannacry
     target_directory: /tmp/wannacry_simulation
     force_rerun: true

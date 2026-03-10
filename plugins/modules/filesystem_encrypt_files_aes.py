@@ -19,7 +19,7 @@ except ImportError:
 
 DOCUMENTATION = r'''
 ---
-module: encrypt_files_aes
+module: filesystem_encrypt_files_aes
 
 short_description: Bulk AES-256-CBC file encryption (Layer 2)
 
@@ -73,7 +73,7 @@ notes:
 EXAMPLES = r'''
 # Encrypt files with random key
 - name: Encrypt victim files
-  encrypt_files_aes:
+  filesystem_encrypt_files_aes:
     files:
       - /tmp/wannacry_simulator/file1.docx
       - /tmp/wannacry_simulator/file2.pdf
@@ -82,7 +82,7 @@ EXAMPLES = r'''
 
 # Encrypt with specific key (for testing/recovery)
 - name: Encrypt with known key
-  encrypt_files_aes:
+  filesystem_encrypt_files_aes:
     files:
       - /tmp/document.docx
     key: "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
@@ -96,7 +96,7 @@ EXAMPLES = r'''
   register: files_to_encrypt
 
 - name: Encrypt found files
-  encrypt_files_aes:
+  filesystem_encrypt_files_aes:
     files: "{{ files_to_encrypt.files | map(attribute='path') | list }}"
     encrypted_extension: "WNCRY"
 '''
@@ -141,7 +141,7 @@ total_failed:
 
 def main():
     """
-    Main execution function for encrypt_files_aes module.
+    Main execution function for filesystem_encrypt_files_aes module.
     
     This module acts as an Ansible interface to the Layer 2 orchestrator
     encrypt_files_bulk() from module_utils.layer2_orchestrators.

@@ -10,7 +10,7 @@ from ansible_collections.tectonic.evidence_generation.plugins.module_utils.netwo
 
 DOCUMENTATION = r'''
 ---
-module: generate_dns_conversation
+module: network_generate_dns_conversation
 
 short_description: Generates DNS conversation primitives (Layer 2)
 
@@ -69,7 +69,7 @@ options:
 EXAMPLES = r'''
 # Successful DNS resolution with deterministic seeding
 - name: Resolve domain successfully
-  generate_dns_conversation:
+  network_generate_dns_conversation:
     domain: "www.example.com"
     src_ip: "192.168.1.100"
     ip_resolver: "8.8.8.8"
@@ -80,7 +80,7 @@ EXAMPLES = r'''
 
 # Failed DNS resolution (NXDOMAIN)
 - name: Failed DNS resolution
-  generate_dns_conversation:
+  network_generate_dns_conversation:
     domain: "nonexistent.com"
     src_ip: "192.168.1.100"
     ip_resolver: "8.8.8.8"

@@ -12,7 +12,7 @@ from ansible_collections.tectonic.evidence_generation.plugins.module_utils.netwo
 
 DOCUMENTATION = r'''
 ---
-module: generate_syn_flood
+module: network_generate_syn_flood
 
 short_description: Generates SYN Flood attack traffic (Layer 3 Profile)
 
@@ -86,7 +86,7 @@ options:
 EXAMPLES = r'''
 # Simple SYN flood attack (100 attackers targeting port 80)
 - name: Generate simple SYN flood attack
-  generate_syn_flood:
+  network_generate_syn_flood:
     attack_type: simple
     victim_ip: "192.168.1.100"
     attackers_amount: 100
@@ -96,7 +96,7 @@ EXAMPLES = r'''
 
 # Large-scale SYN flood (500 attackers)
 - name: Generate large-scale SYN flood attack
-  generate_syn_flood:
+  network_generate_syn_flood:
     attack_type: simple
     victim_ip: "10.0.0.50"
     attackers_amount: 500
@@ -106,7 +106,7 @@ EXAMPLES = r'''
 
 # Multi-port SYN flood attack
 - name: Generate multi-port SYN flood attack
-  generate_syn_flood:
+  network_generate_syn_flood:
     attack_type: multiport
     victim_ip: "172.16.0.10"
     dest_multiple_ports: [80, 443, 22, 3389, 8080]
@@ -145,7 +145,7 @@ duration_seconds:
     returned: always
 '''
 
-def generate_syn_flood_packets(module):
+def network_generate_syn_flood_packets(module):
     """
     Main function to generate SYN flood attack packets based on module parameters.
     """
@@ -251,7 +251,7 @@ def main():
         supports_check_mode=False
     )
     
-    generate_syn_flood_packets(module)
+    network_generate_syn_flood_packets(module)
 
 
 if __name__ == '__main__':
