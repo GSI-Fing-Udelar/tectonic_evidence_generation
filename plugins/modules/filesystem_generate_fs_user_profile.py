@@ -306,18 +306,18 @@ def main():
             # Return single profile results
             module.exit_json(
                 changed=True,
-                profile_type=stats['profile_type'],
-                profile_name=stats['profile_name'],
-                base_directory=stats['base_directory'],
-                total_files=stats['total_files'],
-                failed_files=stats['failed_files'],
-                directories_created=stats['directories_created'],
-                file_types=stats['file_types'],
-                activity_level=stats['activity_level'],
-                temporal_applied=stats['temporal_applied'],
-                permissions_applied=stats['permissions_applied'],
-                file_size_category=stats['file_size_category'],
-                msg=f"Generated {stats['profile_name']} profile with {stats['total_files']} files"
+                profile_type=result['profile_type'],
+                profile_name=result['profile_name'],
+                base_directory=result['base_directory'],
+                total_files=result['total_files'],
+                failed_files=result['failed_files'],
+                directories_created=result['directories_created'],
+                file_types=result['file_types'],
+                activity_level=result['activity_level'],
+                temporal_applied=result['temporal_applied'],
+                permissions_applied=result['permissions_applied'],
+                file_size_category=result['file_size_category'],
+                msg=f"Generated {result['profile_name']} profile with {result['total_files']} files"
             )
     
     except Exception as e:
